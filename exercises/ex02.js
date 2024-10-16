@@ -2,10 +2,19 @@
 // Remember the LIFO (Last-In, First-Out) rule
 // Make sure to build a temporary stack
 
-const Stack = require('../lib/Stack')
+const Stack = require("../lib/Stack");
 
 function lowercaseStrings(stack) {
-  // your code here
+  const tempStack = new Stack();
+
+  while (!stack.isEmpty()) {
+    const str = stack.pop();
+    tempStack.push(str.toLowerCase());
+  }
+
+  while (!tempStack.isEmpty()) {
+    stack.push(tempStack.pop());
+  }
 }
 
 // Create stack
@@ -15,5 +24,5 @@ stack.push("woRLd");
 stack.push("good");
 stack.push("MORNING");
 
-lowercaseStrings(stack)
-console.log(stack.printStack()) // ["hello", "world", "good", "morning"]
+lowercaseStrings(stack);
+console.log(stack.printStack()); // ["hello", "world", "good", "morning"]
